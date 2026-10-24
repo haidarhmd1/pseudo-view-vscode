@@ -11,11 +11,79 @@ Every function gets a card: the code on the left and the translation on the righ
 
 ### Three styles, one click apart
 
-| Tab | Looks like |
-| --- | --- |
-| **In English** | `1. Store the result of useIsHealthDataAvailable as isAvailable.` |
-| **Pseudo English** | `1. DECLARE CONST isAvailable AS useIsHealthDataAvailable()` |
-| **Pseudo code** | `SET isAvailable ← useIsHealthDataAvailable()` … `END IF` |
+Take this function:
+
+```ts
+export async function loadUser(id: string, retries = 3) {
+  let attempt = 0
+  while (attempt < retries) {
+    try {
+      const res = await fetch(`/api/users/${id}`)
+      if (res.ok) return res.json()
+      else if (res.status === 404) throw new Error('missing')
+    } catch (err) {
+      attempt++
+    }
+  }
+  return null
+}
+```
+
+**In English**
+
+```text
+Function: loadUser (id, retries = 3)
+  Note: this is async: it can pause to wait for slow work without freezing the app, and its result arrives later (as a promise).
+  1. Store 0 as attempt.
+  2. As long as attempt is less than retries, keep repeating:
+    Try the following, and be ready for something to go wrong:
+      Wait for the response from requesting the text "/api/users/" followed by id to finish, and keep the result as res.
+      If res was successful, then:
+        Give back the body of res read as data.
+      Otherwise, if the status code of res is equal to 404, then:
+        Stop and fail with the error a brand-new Error built from "missing".
+    If something goes wrong (call the problem err):
+      Increase attempt by 1.
+  3. Give back nothing.
+```
+
+**Pseudo English**
+
+```text
+ASYNC FUNCTION loadUser(id, retries = 3)
+  1. DECLARE LET attempt AS 0
+  2. WHILE attempt is less than retries, keep doing:
+    TRY to do:
+      WAIT FOR fetch(`/api/users/${id}`), then KEEP the result AS res
+      IF res.ok THEN:
+        RETURN res.json()
+      ELSE IF res.status equals 404 THEN:
+        THROW ERROR NEW Error('missing')
+    IF IT FAILS (as err), do:
+      INCREASE attempt BY 1
+  3. RETURN null
+```
+
+**Pseudo code**
+
+```text
+ASYNC FUNCTION loadUser(id, retries = 3)
+  SET attempt ← 0
+  WHILE attempt < retries DO
+    TRY
+      SET res ← AWAIT fetch(`/api/users/${id}`)
+      IF res.ok THEN
+        RETURN res.json()
+      ELSE IF res.status = 404 THEN
+        THROW NEW Error('missing')
+      END IF
+    CATCH err
+      SET attempt ← attempt + 1
+    END TRY
+  END WHILE
+  RETURN null
+END FUNCTION
+```
 
 Names of functions, variables, hooks and parameters stay **exactly as written in your code**, so you can always match the explanation to the source.
 

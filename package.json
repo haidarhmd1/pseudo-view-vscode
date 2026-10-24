@@ -1,0 +1,95 @@
+{
+  "name": "pseudo-view",
+  "displayName": "Pseudo View — Code in Plain English",
+  "description": "Explains every function of the file you have open, side by side: plain English, pseudo code, a file overview and optional Claude explanations.",
+  "version": "0.1.0",
+  "publisher": "local",
+  "author": {
+    "name": "Haidar Hammoud"
+  },
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Education",
+    "Programming Languages",
+    "Other"
+  ],
+  "activationEvents": [
+    "onLanguage:typescript",
+    "onLanguage:typescriptreact",
+    "onLanguage:javascript",
+    "onLanguage:javascriptreact"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "pseudoView.open",
+        "title": "Pseudo View: Show Pseudo Code Beside File"
+      },
+      {
+        "command": "pseudoView.toggleAuto",
+        "title": "Pseudo View: Toggle Auto-Open"
+      },
+      {
+        "command": "pseudoView.setApiKey",
+        "title": "Pseudo View: Set Anthropic API Key (for Explain with Claude)"
+      }
+    ],
+    "configuration": {
+      "title": "Pseudo View",
+      "properties": {
+        "pseudoView.autoOpen": {
+          "type": "boolean",
+          "default": true,
+          "description": "Open the pseudo code panel automatically when a TypeScript/TSX file with functions becomes active."
+        },
+        "pseudoView.model": {
+          "type": "string",
+          "default": "claude-haiku-5-5",
+          "description": "Claude model used by \"Explain with Claude\"."
+        }
+      }
+    },
+    "keybindings": [
+      {
+        "command": "pseudoView.open",
+        "key": "ctrl+alt+p",
+        "mac": "cmd+alt+p",
+        "when": "editorTextFocus"
+      }
+    ]
+  },
+  "scripts": {
+    "build": "esbuild src/extension.ts --bundle --outfile=out/extension.js --external:vscode --format=cjs --platform=node --minify",
+    "test": "esbuild test/pseudo.test.ts --bundle --platform=node --outfile=out/test.js --log-level=warning && node out/test.js test/sample.tsx",
+    "typecheck": "tsc --noEmit",
+    "package": "npm run build && vsce package --no-dependencies"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/vscode": "^1.85.0",
+    "@vscode/vsce": "^3.0.0",
+    "esbuild": "^0.25.0",
+    "typescript": "~5.9.2"
+  },
+  "icon": "images/icon.png",
+  "galleryBanner": {
+    "color": "#4F46E5",
+    "theme": "dark"
+  },
+  "keywords": [
+    "pseudocode",
+    "pseudo code",
+    "explain code",
+    "plain english",
+    "beginner",
+    "learn",
+    "typescript",
+    "javascript",
+    "react",
+    "claude"
+  ]
+}

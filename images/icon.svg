@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#4F46E5"/>
+      <stop offset="1" stop-color="#7C3AED"/>
+    </linearGradient>
+  </defs>
+  <!-- tile -->
+  <rect x="8" y="8" width="240" height="240" rx="52" fill="url(#bg)"/>
+
+  <!-- left pane: code -->
+  <rect x="32" y="52" width="88" height="152" rx="16" fill="#1E1B4B" opacity="0.55"/>
+  <path d="M66 98 L50 128 L66 158" fill="none" stroke="#C7D2FE" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M86 98 L102 128 L86 158" fill="none" stroke="#C7D2FE" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- arrow between panes -->
+  <path d="M124 128 H140" stroke="#FDE68A" stroke-width="9" stroke-linecap="round"/>
+  <path d="M134 118 L144 128 L134 138" fill="none" stroke="#FDE68A" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- right pane: plain English lines -->
+  <rect x="148" y="52" width="76" height="152" rx="16" fill="#FFFFFF"/>
+  <rect x="160" y="74" width="52" height="10" rx="5" fill="#4F46E5"/>
+  <rect x="160" y="96" width="40" height="9" rx="4.5" fill="#A5B4FC"/>
+  <rect x="168" y="116" width="44" height="9" rx="4.5" fill="#A5B4FC"/>
+  <rect x="168" y="136" width="32" height="9" rx="4.5" fill="#A5B4FC"/>
+  <rect x="160" y="156" width="48" height="9" rx="4.5" fill="#A5B4FC"/>
+  <rect x="160" y="176" width="28" height="9" rx="4.5" fill="#FDE68A"/>
+</svg>

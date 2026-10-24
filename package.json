@@ -7,6 +7,14 @@
   "author": {
     "name": "Haidar Hammoud"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/haidarhmd1/pseudo-view-vscode.git"
+  },
+  "homepage": "https://github.com/haidarhmd1/pseudo-view-vscode#readme",
+  "bugs": {
+    "url": "https://github.com/haidarhmd1/pseudo-view-vscode/issues"
+  },
   "license": "MIT",
   "engines": {
     "vscode": "^1.85.0"
